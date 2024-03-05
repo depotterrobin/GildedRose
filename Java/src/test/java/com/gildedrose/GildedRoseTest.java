@@ -2,15 +2,19 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
     private void verifyItem(Item item, Item expected) {
-        Item[] items = new Item[] { item };
+        List<Item> items = new ArrayList<>();
+        items.add(item);
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(expected.sellIn, app.items[0].sellIn);
-        assertEquals(expected.quality, app.items[0].quality);
+        assertEquals(expected.sellIn, items.get(0).sellIn);
+        assertEquals(expected.quality, items.get(0).quality);
     }
 
     @Test
