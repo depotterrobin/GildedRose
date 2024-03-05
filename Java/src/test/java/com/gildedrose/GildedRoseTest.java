@@ -30,7 +30,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void given_itemWithNegativeSellIn_when_endOfDay_then_qualityDecreasedDouble() {
+    void given_itemWithNegativeSellIn_when_endOfDay_then_qualityDecreasesBy2() {
         verifyItem(
             new Item("Normal Item", -5, 4),
             new Item("Normal Item", -6, 2)
@@ -42,6 +42,14 @@ class GildedRoseTest {
         verifyItem(
             new Item("Aged Brie", 20, 4),
             new Item("Aged Brie", 19, 5)
+        );
+    }
+
+    @Test
+    void given_agedBrieItemWithNegativeSellIn_when_endOfDay_then_qualityIncreasesBy2() {
+        verifyItem(
+            new Item("Aged Brie", -5, 4),
+            new Item("Aged Brie", -6, 6)
         );
     }
 
@@ -82,6 +90,14 @@ class GildedRoseTest {
         verifyItem(
             new Item("Backstage passes to a TAFKAL80ETC concert", 0, 40),
             new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0)
+        );
+    }
+
+    @Test
+    void given_itemWithNegativeQuality_when_endOfDay_then_onlySellInDecreases() {
+        verifyItem(
+            new Item("Corrupt item", -100, -10),
+            new Item("Corrupt item", -101, -10)
         );
     }
 
