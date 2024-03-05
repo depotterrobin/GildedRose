@@ -17,27 +17,27 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) { // Loop through all items
             // Start quality decrease / increase logic
-            if (!item.name.equals(AGED_BRIE)
-                    && !item.name.equals(BACKSTAGE_PASS)) {  // Check type for normal item and quality higher than 0
-                if (item.quality > LOWEST_QUALITY) { // Quality can't go below 0
-                    if (!item.name.equals(LEGENDARY_ITEM)) {
-                        decreaseQuality(item);
+            if (!item.getName().equals(AGED_BRIE)
+                    && !item.getName().equals(BACKSTAGE_PASS)) {  // Check type for normal item and quality higher than 0
+                if (item.getQuality() > LOWEST_QUALITY) { // Quality can't go below 0
+                    if (!item.getName().equals(LEGENDARY_ITEM)) {
+                        item.decreaseQuality();
                     }
                 }
             } else {
-                if (item.quality < HIGHEST_QUALITY) { // if quality is below maximum (quality never goes above 50)
-                    increaseQuality(item);
+                if (item.getQuality() < HIGHEST_QUALITY) { // if quality is below maximum (quality never goes above 50)
+                    item.increaseQuality();
 
-                    if (item.name.equals(BACKSTAGE_PASS)) { // Check type for backstage item
-                        if (item.sellIn < 11) {
-                            if (item.quality < HIGHEST_QUALITY) {
-                                increaseQuality(item);
+                    if (item.getName().equals(BACKSTAGE_PASS)) { // Check type for backstage item
+                        if (item.getSellIn() < 11) {
+                            if (item.getQuality() < HIGHEST_QUALITY) {
+                                item.increaseQuality();
                             }
                         }
 
-                        if (item.sellIn < 6) {
-                            if (item.quality < HIGHEST_QUALITY) {
-                                increaseQuality(item);
+                        if (item.getSellIn() < 6) {
+                            if (item.getQuality() < HIGHEST_QUALITY) {
+                                item.increaseQuality();
                             }
                         }
                     }
@@ -45,44 +45,28 @@ class GildedRose {
             }
 
             // Start sellIn decrease logic
-            if (!item.name.equals(LEGENDARY_ITEM)) { // if legendary item, then DON'T decrease sellIn (they don't have a sellIn)
-                decreaseSellIn(item);
+            if (!item.getName().equals(LEGENDARY_ITEM)) { // if legendary item, then DON'T decrease sellIn (they don't have a sellIn)
+                item.decreaseSellIn();
             }
 
             // sellIn exceeded below 0 logic
-            if (item.sellIn < 0) {
-                if (!item.name.equals(AGED_BRIE)) {
-                    if (!item.name.equals(BACKSTAGE_PASS)) {
-                        if (item.quality > LOWEST_QUALITY) {
-                            if (!item.name.equals(LEGENDARY_ITEM)) { // Quality of legendary item never changes
-                                decreaseQuality(item);
+            if (item.getSellIn() < 0) {
+                if (!item.getName().equals(AGED_BRIE)) {
+                    if (!item.getName().equals(BACKSTAGE_PASS)) {
+                        if (item.getQuality() > LOWEST_QUALITY) {
+                            if (!item.getName().equals(LEGENDARY_ITEM)) { // Quality of legendary item never changes
+                                item.decreaseQuality();
                             }
                         }
                     } else { // Backstage passes quality logic
-                        setQualityToZero(item);
+                        item.setQualityToZero();
                     }
                 } else { // Aged Brie logic quality logic
-                    if (item.quality < HIGHEST_QUALITY) {
-                        increaseQuality(item);
+                    if (item.getQuality() < HIGHEST_QUALITY) {
+                        item.increaseQuality();
                     }
                 }
             }
         }
-    }
-
-    private static void setQualityToZero(Item item) {
-        item.quality = 0;
-    }
-
-    private static void decreaseSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-
-    private static void increaseQuality(Item item) {
-        item.quality = item.quality + 1;
-    }
-
-    private static void decreaseQuality(Item item) {
-        item.quality = item.quality - 1;
     }
 }
