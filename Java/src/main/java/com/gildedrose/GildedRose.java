@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.items.ItemFactory;
+import com.gildedrose.items.ItemI;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            ItemFactory.createNewItem(item).update();
-        }
+        items.stream()
+            .map(ItemFactory::createNewItem)
+            .forEach(ItemI::update);
     }
 }
