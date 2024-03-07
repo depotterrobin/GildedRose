@@ -134,4 +134,20 @@ class GildedRoseTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50)
         );
     }
+
+    @Test
+    void given_conjuredItem_when_endOfDay_then_qualityDecreasesBy2() {
+        verifyItem(
+            new Item("Conjured Item", 1, 50),
+            new Item("Conjured Item", 0, 48)
+        );
+    }
+
+    @Test
+    void given_conjuredItemWithNegativeSellIn_when_endOfDay_then_qualityDecreasesBy4() {
+        verifyItem(
+            new Item("Conjured Item", -1, 50),
+            new Item("Conjured Item", -2, 46)
+        );
+    }
 }
