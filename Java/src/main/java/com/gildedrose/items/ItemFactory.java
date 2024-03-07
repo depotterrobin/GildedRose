@@ -8,7 +8,7 @@ public class ItemFactory {
     private static final String LEGENDARY_ITEM = "Sulfuras, Hand of Ragnaros";
     private static final String CONJURED_ITEM = "Conjured Item";
 
-    private ItemFactory () {
+    private ItemFactory() {
     }
 
     public static ItemI createNewItem(Item item) {

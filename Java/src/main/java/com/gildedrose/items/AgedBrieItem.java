@@ -16,7 +16,7 @@ public class AgedBrieItem implements ItemI {
     }
 
     private void increaseQuality() {
-        if(item.quality < MAXIMUM_QUALITY) {
+        if (item.quality < MAXIMUM_QUALITY) {
             this.item.quality++;
         }
     }
