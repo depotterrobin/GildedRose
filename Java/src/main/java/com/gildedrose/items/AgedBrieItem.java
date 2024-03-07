@@ -4,6 +4,7 @@ import com.gildedrose.Item;
 
 public class AgedBrieItem implements ItemI {
     private static final int MAXIMUM_QUALITY = 50;
+
     private final Item item;
 
     public AgedBrieItem(Item item) {
@@ -22,11 +23,11 @@ public class AgedBrieItem implements ItemI {
 
     @Override
     public void update() {
-        decreaseSellIn();
         increaseQuality();
-
         if (item.sellIn < 0) {
             increaseQuality();
         }
+
+        decreaseSellIn();
     }
 }

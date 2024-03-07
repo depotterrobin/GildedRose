@@ -35,7 +35,7 @@ public class BackStagePassItem implements ItemI {
             }
 
             if (item.sellIn < 6) {
-                    increaseQuality();
+                increaseQuality();
             }
         } else {
             setQualityToZero();

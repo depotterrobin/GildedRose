@@ -4,6 +4,7 @@ import com.gildedrose.Item;
 
 public class StandardItem implements ItemI {
     private static final int LOWEST_QUALITY = 0;
+
     private final Item item;
 
     public StandardItem(Item item) {
@@ -23,10 +24,10 @@ public class StandardItem implements ItemI {
     @Override
     public void update() {
         decreaseQuality();
-        decreaseSellIn();
-
         if (item.sellIn < 0) {
             decreaseQuality();
         }
+
+        decreaseSellIn();
     }
 }

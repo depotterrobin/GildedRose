@@ -12,10 +12,10 @@ public class ItemFactory {
 
     public static ItemI createNewItem(Item item) {
         return switch (item.name) {
-            default -> new StandardItem(item);
             case LEGENDARY_ITEM -> new SulfurasItem();
             case AGED_BRIE -> new AgedBrieItem(item);
             case BACKSTAGE_PASS -> new BackStagePassItem(item);
+            default -> new StandardItem(item);
         };
     }
 }
